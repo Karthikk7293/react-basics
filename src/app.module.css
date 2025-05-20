@@ -1,0 +1,15 @@
+
+.logo {
+  height: 16em;
+  padding: 1.5em;
+  border:2px solid red;
+  background: #000; 
+  color:red;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
