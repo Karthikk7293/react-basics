@@ -1,18 +1,13 @@
 import { useState } from 'react'
-import HomePage from './pages/Home'
-import HeaderComponent from './components/Header'
-import Footer,{ FooterButton }  from './components/Footer'
+import Header from './components/Header'
+import Banner from './components/Banner'
 
 function App() {
 
   return (
     <main className='h-screen w-100   '>
-      <FooterButton>
-        sign in
-      </FooterButton>
-      <HeaderComponent />
-      <HomePage />
-      <Footer />
+      <Header/>
+      <Banner/>
     </main>
   )
 }
