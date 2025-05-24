@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import Banner from './components/Banner'
+import CardSection from './components/CardSection'
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <main className='h-screen w-100   '>
       <Header/>
       <Banner/>
+      <CardSection/>
     </main>
   )
 }
