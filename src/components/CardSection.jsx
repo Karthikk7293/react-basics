@@ -1,82 +1,54 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import Card from './Card'
-
-const data = [
-    {
-        title:"The Coldest Sunset",
-        image:"https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-    },
-     {
-        title:"The Coldest Sunset",
-        image:"https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-    },
-     {
-        title:"The Coldest Sunset",
-        image:"https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-    }, {
-        title:"The Coldest Sunset",
-        image:"https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-    }, {
-        title:"The Coldest Sunset",
-        image:"https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-    }, {
-        title:"The Coldest Sunset",
-        image:"https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-    }, {
-        title:"The Coldest Sunset",
-        image:"https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-    }, {
-        title:"The Coldest Sunset",
-        image:"https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-    }, {
-        title:"The Coldest Sunset",
-        image:"https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-    }, {
-        title:"The Coldest Sunset",
-        image:"https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-    }, {
-        title:"The Coldest Sunset",
-        image:"https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-    }, {
-        title:"The Coldest Sunset",
-         image: "https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-    }, {
-        title:"The Coldest Sunset",
-        image:"https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-    }, {
-        title:"The Coldest Sunset",
-        image:"https://www.bigfootdigital.co.uk/wp-content/uploads/2020/07/image-optimisation-scaled.jpg",
-        description:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil."
-    },
-
-]
+import axios from 'axios';
 
 function CardSection() {
+    const [data, setData] = useState([]);
+    const [count, setCount] = useState(0)
 
-    
+    const handleInc = () => {
+        setCount((prev) => prev + 1)
+    }
 
-  return (
-    <div className='border py-5 border-gray-900'>
-      <div className="">
-       {data.map((item,index)=>(
-        <Card tile={item.title} image={item.image} description={item.description} key={index}   />
-       ))}
-      </div>
-    </div>
-  )
+    const handleFetchData = () => {
+        fetch('https://fakestoreapi.com/products')
+            .then(res => res.json())
+            .then(json => {
+                console.log(json)
+                setData(json)
+            })
+
+        // axios.get('https://fakestoreapi.com/products').then((res) => {
+        //     console.log(res);
+        //     setData(res.data)
+
+        // })
+    }
+
+
+    useEffect(() => {
+        handleFetchData()
+        return () => {
+            console.log("hello");
+        }
+    }, [])
+
+
+
+
+
+    return (
+        <div className='border py-5 border-gray-900 '>
+            <button onClick={handleInc} className='border'>click me,</button>
+            count:{count}
+
+            <div className="">
+                {data?.map((item, index) => (
+                    <Card tile={item.title} image={item.image} description={item.description} key={index} />
+                ))}
+            </div>
+        </div>
+    )
 }
 
 export default CardSection

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 
 const Banner = () => {
 
@@ -11,10 +11,6 @@ const Banner = () => {
 
     }, [])
 
-    const handlePing = useCallback(() => {
-        first
-    },
-        [second])
 
 
     // const handlePing = () => {
