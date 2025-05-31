@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 
 function Header() {
 
@@ -23,9 +24,9 @@ function Header() {
         </div>
 
         <div className="w-1/3   sm:flex justify-between items-center hidden">
-          <a className='text-sm uppercase text-green-500' href="">Home</a>
-          <a className='text-sm uppercase text-green-500' href="">Home</a>
-          <a className='text-sm uppercase text-green-500' href="">{name}</a>
+          <Link to={'/'} className='text-sm uppercase text-green-500'>Home</Link>
+          <Link to={'/about'} className='text-sm uppercase text-green-500'>about</Link>
+
         </div>
         <div className=" border flex justify-center gap-3 items-center w-1/3">
           <button onClick={handleClick} className='border bg-green-400 hover:bg-green-600 text-white shadow-lg py-1 px-3 rounded-sm uppercase text-xs'>login</button>

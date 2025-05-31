@@ -5,19 +5,11 @@ import CardSection from './components/CardSection'
 
 function App() {
 
-  const [show, setShow] = useState(false)
-
-  useEffect(() => {
-
-
-
-  }, [show]) //  dependency array
-
 
   return (
     <main className='h-screen w-100   '>
       <Header />
-      {!show && <Banner />}
+      <Banner />
       <CardSection />
     </main>
   )
