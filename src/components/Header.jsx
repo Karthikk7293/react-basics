@@ -26,6 +26,7 @@ function Header() {
         <div className="w-1/3   sm:flex justify-between items-center hidden">
           <Link to={'/'} className='text-sm uppercase text-green-500'>Home</Link>
           <Link to={'/about'} className='text-sm uppercase text-green-500'>about</Link>
+          <Link to={'/products'} className='text-sm uppercase text-green-500'>products</Link>
 
         </div>
         <div className=" border flex justify-center gap-3 items-center w-1/3">
