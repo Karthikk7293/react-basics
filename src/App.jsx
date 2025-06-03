@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Header from './components/Header'
 import Banner from './components/Banner'
 import CardSection from './components/CardSection'
+import FormComponent from './components/FormComponent'
 
 function App() {
 
@@ -15,10 +16,17 @@ function App() {
 
 
   return (
-    <main className='h-screen w-100   '>
+    <main className={`h-screen w-100   `}>
       <Header />
-      {!show && <Banner />}
-      <CardSection />
+
+      {!show
+        ? <FormComponent setShow={setShow} />
+        : <div>
+          <Banner />
+          <CardSection />
+        </div>}
+
+
     </main>
   )
 }
