@@ -1,13 +1,16 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './index.css'
+import { Provider } from 'react-redux'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+import './index.css'
 import HomePage from './pages/Home.jsx'
 import Layout from './components/Layout.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
 import AboutPage from './pages/About.jsx'
 import ProductsPage from './pages/Products.jsx'
 import ProductPage from './pages/Product.jsx'
+import { Store } from './redux/store.js'
 
 const router = createBrowserRouter(
   [
@@ -43,6 +46,8 @@ const router = createBrowserRouter(
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={Store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>,
 )

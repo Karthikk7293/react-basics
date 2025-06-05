@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { login } from '../redux/slices/userSlice';
 
 function Header() {
 
-  const [data, setData] = useState(0)
-  const [name, setName] = useState('karthik')
+  const dispatch = useDispatch()
+  const data = useSelector((state) => state.user)
+  console.log(data);
+
+
 
   const handleClick = () => {
-    console.log("clicked");
-    setData(5)
-    setName("some name")
+    dispatch(login("updated"))
   }
 
   return (
@@ -30,11 +33,11 @@ function Header() {
 
         </div>
         <div className=" border flex justify-center gap-3 items-center w-1/3">
-          <button onClick={handleClick} className='border bg-green-400 hover:bg-green-600 text-white shadow-lg py-1 px-3 rounded-sm uppercase text-xs'>login</button>
+          <button onClick={handleClick} className='border bg-green-400 hover:bg-green-600 text-white shadow-lg py-1 px-3 rounded-sm uppercase text-xs'>{data.isLoggedIn ? "logout" : "login"}</button>
           <span className='border  rounded-full'>
             <img width={40} height={40} src="https://static.vecteezy.com/system/resources/previews/048/216/761/non_2x/modern-male-avatar-with-black-hair-and-hoodie-illustration-free-png.png" alt="avatar" className='' />
           </span>
-          <span>{data}</span>
+          <span>{data.name}</span>
         </div>
 
 

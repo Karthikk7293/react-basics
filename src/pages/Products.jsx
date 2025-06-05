@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const ProductsPage = () => {
+
+    const { name, isLoggedIn } = useSelector((state) => state.user)
 
     const [products, setProducts] = useState([])
     const handleFetchProducts = async () => {
@@ -16,12 +19,17 @@ const ProductsPage = () => {
         }
     }
     useEffect(() => {
-        handleFetchProducts()
-    }, [])
+
+        if (isLoggedIn) {
+
+            handleFetchProducts()
+        }
+    }, [isLoggedIn])
 
     return (
         <div className='w-full  bg-red-400'>
             <div className="">
+                <h2>{name}</h2>
                 <p className='text-blue-500 text-3xl text-center font-bold pt-10 '>All Products</p>
             </div>
             <div className="grid grid-cols-3">
