@@ -1,30 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { fetchProductWithId } from '../api/products'
 
 function ProductPage() {
     const { productId } = useParams()
-    const [productDetails, setProductDetails] = useState({})
-
-    console.log(productId);
-
-    const getProductDetails = async (id) => { // decleration --parameter
-        try {
-            const data = await fetch(`https://fakestoreapi.com/products/${id}`)
-            const response = await data.json()
-            console.log(response);
-            setProductDetails(response)
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    const { productDetails } = useSelector((state) => state.user)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (productId) {
-            getProductDetails(productId)// involk or call --aurgument 
+            dispatch(fetchProductWithId(productId))
         }
 
-    }, [productId])
+    }, [productId, dispatch])
 
 
 

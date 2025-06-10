@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { fetchAllProducts } from '../api/products'
 
 const ProductsPage = () => {
 
-    const { name, isLoggedIn } = useSelector((state) => state.user)
+    const { name, allProducts, status } = useSelector((state) => state.user)
 
-    const [products, setProducts] = useState([])
-    const handleFetchProducts = async () => {
-        try {
-            const data = await fetch('https://fakestoreapi.com/products')
-            const response = await data.json()
-            console.log(response);
+    const dispatch = useDispatch()
 
-            setProducts(response)
-        } catch (error) {
-            console.log(error);
-        }
-    }
     useEffect(() => {
-
-        if (isLoggedIn) {
-
-            handleFetchProducts()
+        if (status === "") {
+            dispatch(fetchAllProducts())
         }
-    }, [isLoggedIn])
+
+    }, [dispatch])
+
+    if (status === 'pending') {
+        return (
+            <div className='flex justify-center items-center h-screen w-full'>
+                <button type="button" class="bg-indigo-500  border-[.3rem] border-green-800 animate-spin w-10 h-10 rounded-lg" disabled>
+
+                </button>
+            </div >
+        )
+    }
 
     return (
         <div className='w-full  bg-red-400'>
@@ -33,7 +33,7 @@ const ProductsPage = () => {
                 <p className='text-blue-500 text-3xl text-center font-bold pt-10 '>All Products</p>
             </div>
             <div className="grid grid-cols-3">
-                {products.map((item, index) => (
+                {allProducts.map((item, index) => (
                     <Link to={`/product/${item.id}`} key={index}>
                         <div class="max-w-sm rounded overflow-hidden shadow-lg">
                             <img class="w-full" src={item.image} alt="Sunset in the mountains" />

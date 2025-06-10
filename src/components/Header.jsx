@@ -7,7 +7,7 @@ function Header() {
 
   const dispatch = useDispatch()
   const data = useSelector((state) => state.user)
-  console.log(data);
+  // console.log(data);
 
 
 
