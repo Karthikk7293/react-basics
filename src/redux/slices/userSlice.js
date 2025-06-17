@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchAllProducts, fetchProductWithId } from "../../api/products";
-import { act } from "react";
 
 const initialState = {
     name: "karthik",
     isLoggedIn: false,
+    userDetails: {},
     allProducts: [],
     productDetails: {},
     status: "",
@@ -15,6 +15,25 @@ const initialState = {
 const userSlice = createSlice({
     name: 'user',
     initialState,
+    reducers: {
+        login: (state, action) => {
+            state.name = action.payload
+            state.isLoggedIn = true
+            localStorage.setItem('userDetails', JSON.stringify(action.payload))
+        },
+        logout: (state) => {
+            state.name = ""
+            state.isLoggedIn = false
+            localStorage.clear()
+        },
+        getUserDetails: (state) => {
+            const data = localStorage.getItem('userDetails')
+            if (data) {
+                state.userDetails = JSON.parse(data)
+            }
+        }
+
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchAllProducts.pending, (state,) => {
             state.status = "pending"

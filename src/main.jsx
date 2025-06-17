@@ -11,6 +11,9 @@ import AboutPage from './pages/About.jsx'
 import ProductsPage from './pages/Products.jsx'
 import ProductPage from './pages/Product.jsx'
 import { Store } from './redux/store.js'
+import ProtectedRoute from './components/ProtectedRoute.jsx'
+import ProfilePage from './pages/ProfilePage.jsx'
+import LoginPage from './pages/LoginPage.jsx'
 
 const router = createBrowserRouter(
   [
@@ -29,12 +32,24 @@ const router = createBrowserRouter(
           element: <AboutPage />,
         },
         {
+          path: 'login',
+          element: <LoginPage />,
+        },
+        {
           path: 'products',
           element: <ProductsPage />,
         },
         {
           path: 'product/:productId',
           element: <ProductPage />,
+        },
+        // protected routes
+        {
+          element: <ProtectedRoute />,
+          children: [
+            { path: '/profile', element: <ProfilePage /> }
+          ]
+
         }
       ]
 

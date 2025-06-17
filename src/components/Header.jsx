@@ -12,7 +12,7 @@ function Header() {
 
 
   const handleClick = () => {
-    dispatch(login("updated"))
+    dispatch(login("karthik"))
   }
 
   return (
@@ -30,6 +30,7 @@ function Header() {
           <Link to={'/'} className='text-sm uppercase text-green-500'>Home</Link>
           <Link to={'/about'} className='text-sm uppercase text-green-500'>about</Link>
           <Link to={'/products'} className='text-sm uppercase text-green-500'>products</Link>
+          <Link to={'/profile'} className='text-sm uppercase text-green-500'>profile</Link>
 
         </div>
         <div className=" border flex justify-center gap-3 items-center w-1/3">

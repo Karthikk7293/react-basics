@@ -10,7 +10,7 @@ const Layout = () => {
             <main className=' min-h-screen h-full pt-20 '>
                 <Outlet />
             </main>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }
