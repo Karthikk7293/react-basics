@@ -5,7 +5,13 @@ const BASE_API_URL = "https://fakestoreapi.com"
 
 export const fetchAllProducts = createAsyncThunk("products/fetchAllProducts", async () => {
     try {
-        const response = await axios.get(`${BASE_API_URL}/products`)
+        const token = localStorage.getItem('token');
+        const response = await axios.get(`http://localhost:4000/api/user/get-all-users`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+
         return response.data
     } catch (error) {
         console.log({ error });

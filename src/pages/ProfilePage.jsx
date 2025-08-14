@@ -12,7 +12,8 @@ function ProfilePage() {
 
     return (
         <div className='w-full h-screen flex justify-center items-center '>
-            <img className='w-1/3 h-auto' src={image} alt="" />
+            <img className=' h-auto' src={image} alt="" />
+            profile page
         </div>
     )
 }

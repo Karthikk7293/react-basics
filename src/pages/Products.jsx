@@ -6,6 +6,8 @@ import { fetchAllProducts } from '../api/products'
 const ProductsPage = () => {
 
     const { name, allProducts, status } = useSelector((state) => state.user)
+    console.log(allProducts);
+
 
     const dispatch = useDispatch()
 
@@ -33,12 +35,12 @@ const ProductsPage = () => {
                 <p className='text-blue-500 text-3xl text-center font-bold pt-10 '>All Products</p>
             </div>
             <div className="grid grid-cols-3">
-                {allProducts.map((item, index) => (
+                {allProducts?.map((item, index) => (
                     <Link to={`/product/${item.id}`} key={index}>
                         <div class="max-w-sm rounded overflow-hidden shadow-lg">
                             <img class="w-full" src={item.image} alt="Sunset in the mountains" />
                             <div class="px-6 py-4">
-                                <div class="font-bold text-xl mb-2">{item.title}</div>
+                                <div class="font-bold text-xl mb-2">{item.name}</div>
                                 <p class="text-gray-700 text-base">
                                     {item.descrption} </p>
                             </div>
