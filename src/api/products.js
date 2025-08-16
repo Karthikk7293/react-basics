@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const BASE_API_URL = "https://fakestoreapi.com"
+const BASE_API_URL = "https://backend-basics-64.vercel.app"
 
 export const fetchAllProducts = createAsyncThunk("products/fetchAllProducts", async () => {
     try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/user/get-all-users`, {
+        const response = await axios.get(`${BASE_API_URL}/api/user/get-all-users`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

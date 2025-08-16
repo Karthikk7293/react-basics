@@ -11,7 +11,7 @@ function LoginPage() {
         // Handle login logic here
         console.log(credentials);
         try {
-            const { data } = await axios.post('http://localhost:4000/api/user/login', credentials)
+            const { data } = await axios.post('https://backend-basics-64.vercel.app/api/user/login', credentials)
 
             if (data.success) {
                 localStorage.setItem('token', data.token)
