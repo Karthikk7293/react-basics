@@ -16,6 +16,7 @@ const ProductsPage = () => {
             dispatch(fetchAllProducts())
         }
 
+
     }, [dispatch])
 
     if (status === 'pending') {

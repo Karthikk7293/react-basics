@@ -36,10 +36,6 @@ const router = createBrowserRouter(
           element: <LoginPage />,
         },
         {
-          path: 'products',
-          element: <ProductsPage />,
-        },
-        {
           path: 'product/:productId',
           element: <ProductPage />,
         },
@@ -48,6 +44,13 @@ const router = createBrowserRouter(
           element: <ProtectedRoute />,
           children: [
             { path: '/profile', element: <ProfilePage /> }
+          ]
+
+        },
+        {
+          element: <ProtectedRoute />,
+          children: [
+            { path: '/products', element: <ProductsPage /> }
           ]
 
         }
